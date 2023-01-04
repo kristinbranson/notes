@@ -103,7 +103,7 @@ $L [(4+2F)H^2 + (3A + F + 5)H] + L[(8+2F)H^2 + (6A+ F + 7)H]$ = 44 million param
 
 ### Encoder-only models
 
-**BERT** is an encoder-only model. 
+**BERT** is an encoder-only model trained with a masked loss. 
 
 *BERT-Base* has $L = 12$ encoder blocks, hidden size $H = 768$, $A = 12$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
 $L [(4+2F)H^2 + (3A + F + 5)H]$ = 85 million parameters. 
@@ -115,10 +115,10 @@ $L [(4+2F)H^2 + (3A + F + 5)H]$ = 303 million parameters.
 
 Decoder-only models were proposed in [Generating Wikipedia by summarizing long sequences](https://arxiv.org/pdf/1801.10198.pdf). These tend to do conditional text generation, with a prompt input to the network first. 
 
-**T-D** used  $L = 6$ decoder-only blocks, hidden size $H = 512$, number of attention heads is $A=8$, fully-connected factor is $F=4$. Total number of parameters is:
+**T-D** is trained with a causal loss. It used  $L = 6$ decoder-only blocks, hidden size $H = 512$, number of attention heads is $A=8$, fully-connected factor is $F=4$. Total number of parameters is:
 $$L [(4+2F)H^2 + (3A + F + 5)H] = 19 million parameters. 
 
-**GPT-2** is a scaled-up decoder-only model.
+**GPT-2** is a scaled-up T-D model.
 
 *GPT-2-Small* has $L = 12$ decoder-only blocks, hidden size $H = 768$, $A = 12$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
 $L [(4+2F)H^2 + (3A + F + 5)H]$ = 85 million parameters (same as BERT-Base)
@@ -134,13 +134,27 @@ $L [(4+2F)H^2 + (3A + F + 5)H]$ = 1.481 billion parameters.
 
 **GPT-3**  has $L = 96$ decoder-only blocks, hidden size $H = 12288$, $A = 96$ attention heads, fully-connected factor $F=4$. It also uses $d_{head} = 128$, while all other models use $d_head = 64$. The number of parameters is 175 billion. 
 
+**XLNet** is a decoder-only model trained with a permutation loss. 
+
+## Prompting vs Fine-Tuning
+
+Most models suggest self-supervised training on large unlabeled text data sets, followed by training heads for specific tasks. 
+
+GPT-2 and GPT-3 suggest instead doing self-supervised training only, and encoding the task through a prompt. 
+
 ## Optimization
 
-**RoBERTa**: BERT + optimization tweaks, bigger training data set
+Amount of training data, batch size, and training iterations are growing as model size grows. 
+
+**RoBERTa**: BERT + optimization tweaks, bigger training data set. 
+
+
 
 ## References
 
-[Generating Wikipedia by summarizing long sequences](https://arxiv.org/pdf/1801.10198.pdf)
+[Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf)
 [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
 [The Annotated Tranformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
-
+[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf)
+[Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/pdf/1801.10198.pdf)
+[The Illustrated GPT-2](https://jalammar.github.io/illustrated-gpt2/)
