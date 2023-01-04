@@ -1,7 +1,7 @@
 
 # LLM Cheat Sheet
 
-## Pre-training loss functions
+## Self-supervised loss functions
 
 **Causal** language models: predict next word given previous words. Training loss is on all words in the block, attention masks are used so that Used in Attention is All You Need, GPT-x. 
 
