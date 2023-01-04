@@ -104,8 +104,10 @@ $L [(4+2F)H^2 + (3A + F + 5)H] + L[(8+2F)H^2 + (6A+ F + 7)H]$ = 44 million param
 ### Encoder-only models
 
 **BERT** is an encoder-only model. 
+
 *BERT-Base* has $L = 12$ encoder blocks, hidden size $H = 768$, $A = 12$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
 $L [(4+2F)H^2 + (3A + F + 5)H]$ = 85 million parameters. 
+
 *BERT-large* has $L = 24$ encoder blocks, hidden size $H = 1024$, $A = 16$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
 $L [(4+2F)H^2 + (3A + F + 5)H]$ = 303 million parameters. 
 
@@ -117,15 +119,20 @@ Decoder-only models were proposed in [Generating Wikipedia by summarizing long s
 $$L [(4+2F)H^2 + (3A + F + 5)H] = 19 million parameters. 
 
 **GPT-2** is a scaled-up decoder-only model.
+
 *GPT-2-Small* has $L = 12$ decoder-only blocks, hidden size $H = 768$, $A = 12$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
 $L [(4+2F)H^2 + (3A + F + 5)H]$ = 85 million parameters (same as BERT-Base)
+
 *GPT-2-Medium* has $L = 24$ decoder-only blocks, hidden size $H = 1024$, $A = 16$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
 $L [(4+2F)H^2 + (3A + F + 5)H]$ = 303 million parameters (same as BERT-Large)
+
 *GPT-2-Large* has $L = 36$ decoder-only blocks, hidden size $H = 1280$, $A = 20$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
 $L [(4+2F)H^2 + (3A + F + 5)H]$ = 711 million parameters.
+
 *GPT-2-Extra-Large* has $L = 48$ decoder-only blocks, hidden size $H = 1600$, $A = 25$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
 $L [(4+2F)H^2 + (3A + F + 5)H]$ = 1.481 billion parameters. 
-*GPT-3*  has $L = 96$ decoder-only blocks, hidden size $H = 12288$, $A = 96$ attention heads, fully-connected factor $F=4$. It also uses $d_{head} = 128$, while all other models use $d_head = 64$. The number of parameters is 175 billion. 
+
+**GPT-3**  has $L = 96$ decoder-only blocks, hidden size $H = 12288$, $A = 96$ attention heads, fully-connected factor $F=4$. It also uses $d_{head} = 128$, while all other models use $d_head = 64$. The number of parameters is 175 billion. 
 
 ## Optimization
 
