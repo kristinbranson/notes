@@ -11,7 +11,7 @@
 
 **Replaced token detection**:  replace tokens with words generated from small generator network, predict whether tokens are replaced or not. Used in ELECTRA. 
 
-## Architectures
+## Architecture components
 
 ### Attention layers
 
@@ -24,7 +24,7 @@ $$a_{ij} = SoftMax_j(a_{i\cdot}') = \frac{1}{Z_i} \exp a_{ij}'$$
 Compute weighted sum of learned values:
 $$h_{i} = \sum_{j=1}^T a_{ij} W_v x_v$$
 
-## Self-attention layers
+### Self-attention layers
 
 In self-attention, $z_i = x_i$. 
 
@@ -67,6 +67,27 @@ $$2(3(H^2 + AH) + H^2 + 2H) + H(FH+1) + FH(H+1) + 2H$$
 $$=(6 + 2 + F + F)H^2 + (6A + 4 + 1 + F + 2)H$$
 $$=(8+2F)H^2 + (6A+ F + 7)H$$
 
+### Word embedding
+The word embedding is a look-up table of length $H$ vectors for each of the $V$ words in the vocabulary. It has $HV$ parameters.
+
+## Positional encoding
+The positional encoding is a vector of length $H$ representing the location of a word, computed as 
+$$PE_{t,2i} = \sin(t/10000^{2i/H})$$
+$$PE_{t,2i+1} = \cos(t/10000^{2i/H})$$
+
+The input to the first layer of the encoder/decoder blocks is the sum of the word embedding and the position encoding. 
+
+### Generator
+The generator is a linear projection from the output of size $H$ to the vocabulary size $V$ followed by a soft-max and has $HV$ parameters, shared with the  word embedding. This output is interpreted as the probability of outputting each token. 
+
+## Architecture Comparison
+
+**AAYN** is an encoder-decoder network with $L = 6$ encoder and decoder blocks, hidden size $H = 512$, number of attention heads is $A=8$, fully-connected factor is $F=4$. The number of parameters, excluding the embedding and generator layers, is 
+$L [(4+2F)H^2 + (3A + F + 5)H] + L[(8+2F)H^2 + (6A+ F + 7)H]$ = 44 million parameters. 
+
+**BERT** is an encoder-only model. 
+BERT-base has $L = 12$ encoder blocks, hidden size $H = 768$, $A = 12$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
+$L [(4+2F)H^2 + (3A + F + 5)H]$ = 85 million parameters. 
 
 See [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) for a good visualization, [The Annotated Tranformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html) for sample code. 
 
