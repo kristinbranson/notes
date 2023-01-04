@@ -50,7 +50,22 @@ $$= (4+2F)H^2 + (3A + F + 5)H$$
 
 ### Decoder blocks
 A decoder block inputs a target sequence and a memory sequence, possibly from an encoder block. It consists of the following stacked layers:
-* Multi-head self-attention layer on the target 
+* Multi-head self-attention layer on the target sequence, using an attention mask to prevent using illegal information. $3A$ matrices of size $H \times (H/A+1)$. Number of parameters: $3 A H (H/A + 1) = 3(H^2 + AH)$.
+* Concatenation then projection. One matrix of size $H \times H$. Number of parameters: $H^2$. 
+* Residual connection.
+* Layer norm. Number of parameters: $2H$.
+* Multi-head attention layer using the output of self-attention on the target sequence as queries and the memory sequence as keys and values. Number of parameters: $3 A H (H/A + 1) = 3(H^2 + AH)$.
+* Concatenation then projection. One matrix of size $H \times H$. Number of parameters: $H^2$. 
+* Residual connection.
+* Layer norm. Number of parameters: $2H$.
+* Position-wise fully connected layer to hidden layer of size $FH$. One matrix of size $H \times (FH+1)$. Number of parameters: $H(FH+1)$. 
+* Position-wise fully connected layer back to output of size $H$. One matrix of size $FH \times (H+1)$. Number of parameters: $FH(H+1)$. 
+* Residual connection.
+* Layer norm. Number of parameters: $2H$. 
+Total number of parameters per residual block:
+$$2(3(H^2 + AH) + H^2 + 2H) + H(FH+1) + FH(H+1) + 2H$$
+$$=(6 + 2 + F + F)H^2 + (6A + 4 + 1 + F + 2)H$$
+$$=(8+2F)H^2 + (6A+ F + 7)H$$
 
 
 See [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) for a good visualization, [The Annotated Tranformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html) for sample code. 
