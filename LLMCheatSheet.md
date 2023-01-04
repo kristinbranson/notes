@@ -34,7 +34,7 @@ We learn $A$ different query, key, and value matrices of size $H \times (H/A)$, 
 
 ### Encoder blocks
 
-An encoder block consist of the following stacked layers:
+An encoder block inputs a sequence (derived from the word tokens and their position embedding) and consists of the following stacked layers:
 * Multi-headed self-attention layer. $3A$ matrices of size $H \times (H/A+1)$. Number of parameters: $3 A H (H/A + 1) = 3(H^2 + AH)$.
 * Concatenation then projection. One matrix of size $H \times H$. Number of parameters: $H^2$. 
 * Residual connection. 
@@ -49,7 +49,8 @@ $$= (3 + 1 + F + F)H^2 + (3A + 2 + 1 + F + 2)H$$
 $$= (4+2F)H^2 + (3A + F + 5)H$$
 
 ### Decoder blocks
-A decoder block consists of the following stacked layers:
+A decoder block inputs a target sequence and a memory sequence, possibly from an encoder block. It consists of the following stacked layers:
+* Multi-head self-attention layer on the target 
 
 
 See [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/) for a good visualization, [The Annotated Tranformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html) for sample code. 
