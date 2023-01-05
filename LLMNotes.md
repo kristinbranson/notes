@@ -1,5 +1,5 @@
 
-# LLM Cheat Sheet
+# Large Language Model Notes
 
 ## Self-supervised loss functions
 
