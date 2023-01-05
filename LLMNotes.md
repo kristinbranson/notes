@@ -111,6 +111,8 @@ $L [(4+2F)H^2 + (3A + F + 5)H]$ = 85 million parameters.
 *BERT-large* has $L = 24$ encoder blocks, hidden size $H = 1024$, $A = 16$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
 $L [(4+2F)H^2 + (3A + F + 5)H]$ = 303 million parameters. 
 
+**ELECTRA** discriminator has the same model architecture as BERT-Base. The generator used for corrupting has a smaller width layers. 
+
 ### Decoder-only models
 
 Decoder-only models were proposed in [Generating Wikipedia by summarizing long sequences](https://arxiv.org/pdf/1801.10198.pdf). These tend to do conditional text generation, with a prompt input to the network first. 
@@ -158,3 +160,4 @@ Amount of training data, batch size, and training iterations are growing as mode
 [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf)
 [Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/pdf/1801.10198.pdf)
 [The Illustrated GPT-2](https://jalammar.github.io/illustrated-gpt2/)
+[ELECTRA: Pre-Training Text Encoders as Discriminators Rather than Generators](https://openreview.net/pdf?id=r1xMH1BtvB)
