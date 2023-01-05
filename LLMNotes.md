@@ -120,9 +120,9 @@ Decoder-only models were proposed in [Generating Wikipedia by summarizing long s
 **T-D** is trained with a causal loss. It used  $L = 6$ decoder-only blocks, hidden size $H = 512$, number of attention heads is $A=8$, fully-connected factor is $F=4$. Total number of parameters is:
 $$L [(4+2F)H^2 + (3A + F + 5)H] = 19 million parameters. 
 
-**GPT-2** is a scaled-up T-D model.
+**GPT-X** is a scaled-up T-D model. 
 
-*GPT-2-Small* has $L = 12$ decoder-only blocks, hidden size $H = 768$, $A = 12$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
+*GPT* = *GPT-2-Small* has $L = 12$ decoder-only blocks, hidden size $H = 768$, $A = 12$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
 $L [(4+2F)H^2 + (3A + F + 5)H]$ = 85 million parameters (same as BERT-Base)
 
 *GPT-2-Medium* has $L = 24$ decoder-only blocks, hidden size $H = 1024$, $A = 16$ attention heads, fully-connected factor $F=4$. The number of parameters, excluding the embedding and generator layers, is 
@@ -150,14 +150,42 @@ Amount of training data, batch size, and training iterations are growing as mode
 
 **RoBERTa**: BERT + optimization tweaks, bigger training data set. 
 
+* Attention is all you need: 300 thousand iterations, batch size 25000 source and target tokens, 36M sentences training data (English-French)
+* BERT: 1 million iterations, batch size = 256, 16GB training data
+* RoBERTa: 500 thousand iterations, batch size = 8K, 160GB training data
+* XLNet: 500 thousand iterations, batch size = 8K, 126GB = 33B tokens training data
+* GPT: 100 epochs, batch size = 64, ?? training data, 512 tokens
+* GPT-2: ?? iterations, batch size = 512, ?? training data, 1024 tokens context
+* GPT-3: trained for 300B tokens, batch size = 3.2M, 500B tokens training data, 1024 tokens context 
+* ELECTRA: 1 million iterations, batch size = 256, training data same as XLNet: 126GB = 33B tokens
 
+## Tokenization
+
+## Training Data
+
+## Benchmarks
+
+## Hyperparameters
+
+[Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf) empirically shows rules for choosing model size, batch size, and training iterations given a compute budget (for T-D-style models). If $C$ is your compute budget:
+* Number of parameters: $N \propto C^{\alpha_C^{min}/\alpha_N}$
+* Batch size: $B \propto C^{\alpha_C^{min}/\alpha_B}$
+* Iteration steps: $S \propto C^{\alpha_C^{min}/\alpha_S}
+* Data set size $D = BS$
+
+where
+* $\alpha_C^{min} = (\alpha_S^{-1}+\alpha_B^{-1}+\alpha_N^{-1})^{-1}$
+* $\alpha_S = .76$
+* $\alpha_B = .21$
+* $\alpha_N = .076$
 
 ## References
 
-[Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf)
-[The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
-[The Annotated Tranformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
-[BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf)
-[Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/pdf/1801.10198.pdf)
-[The Illustrated GPT-2](https://jalammar.github.io/illustrated-gpt2/)
-[ELECTRA: Pre-Training Text Encoders as Discriminators Rather than Generators](https://openreview.net/pdf?id=r1xMH1BtvB)
+1. [Attention Is All You Need](https://arxiv.org/pdf/1706.03762.pdf)
+2. [The Illustrated Transformer](https://jalammar.github.io/illustrated-transformer/)
+3. [The Annotated Tranformer](https://nlp.seas.harvard.edu/2018/04/03/attention.html)
+4. [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf)
+5. [Generating Wikipedia by Summarizing Long Sequences](https://arxiv.org/pdf/1801.10198.pdf)
+6. [The Illustrated GPT-2](https://jalammar.github.io/illustrated-gpt2/)
+7. [ELECTRA: Pre-Training Text Encoders as Discriminators Rather than Generators](https://openreview.net/pdf?id=r1xMH1BtvB)
+8. [Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf)
