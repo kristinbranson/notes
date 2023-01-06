@@ -98,6 +98,15 @@ The input to the first layer of the encoder/decoder blocks is the sum of the wor
 ### Generator
 The generator is a linear projection from the output of size $H$ to the vocabulary size $V$ followed by a soft-max and has $HV$ parameters, shared with the  word embedding. This output is interpreted as the probability of outputting each token. 
 
+### Memory
+
+Transformer XL introduced a recurrence mechanism.  During training, the hidden state sequence computed for the previous segment is fixed and cached to be reused as an extended context when the model processes the next new segment, thus having access to 2X the context without additional training compute. The one wrinkle here is the cached positional encoding is incorrect. To fix this, they propose replacing the positional encoding with position-related terms in each attention layer.
+Originally:
+$$a_{ij}' = (z_i+p_i)^\top W_q^\top W_k (x_j+p_j) = z_i^\top W_q^\top W_k x_j + z_i^\top W_q^\top W_k p_j + p_i^\top W_q^\top W_k x_j + p_i^\top W_q^\top W_k p_j$$ 
+where $p_j$ is the positional encoding. They propose
+$$a_{ij}' = z_i^\top W_q^\top W_{Xk} x_j + z_i^\top W_q^\top W_{Rk} R_{i-j} + u^\top W_{Xk} x_j + v^\top W_{Rk} R_{i-j}$$ 
+where $R_{i-j}$ is a sinusoidal relative positional encoding and $u$ and $v$ are learned vectors, and two separate key matrices $W_{Xk}$ and $W_{Rk}$ are learned. 
+
 ## Architecture Comparison
 
 ### Encoder-Decoder models
