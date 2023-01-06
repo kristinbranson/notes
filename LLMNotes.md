@@ -48,7 +48,7 @@ $$3(H^2 + AH) + H^2 + 2H + H(FH+1) + FH(H+1) + 2H$$
 $$= (3 + 1 + F + F)H^2 + (3A + 2 + 1 + F + 2)H$$
 $$= (4+2F)H^2 + (3A + F + 5)H$$
 
-### Decoder blocks
+### AIAYN Decoder blocks
 A decoder block inputs a target sequence and a memory sequence, possibly from an encoder block. It consists of the following stacked layers:
 * Multi-head self-attention layer on the target sequence, using an attention mask to prevent using future information. $3A$ matrices of size $H \times (H/A+1)$. Number of parameters: $3 A H (H/A + 1) = 3(H^2 + AH)$.
 * Concatenation then projection. One matrix of size $H \times H$. Number of parameters: $H^2$. 
@@ -67,6 +67,8 @@ $$2(3(H^2 + AH) + H^2 + 2H) + H(FH+1) + FH(H+1) + 2H$$
 $$=(6 + 2 + F + F)H^2 + (6A + 4 + 1 + F + 2)H$$
 $$=(8+2F)H^2 + (6A+ F + 7)H$$
 
+### Decoder-only blocks
+
 In decoder-only models, the second set of encoder-decoder attention layers is skipped. A decoder-only decoder block consists of:
 * Multi-head self-attention layer on the target sequence, using an attention mask to prevent using future information. $3A$ matrices of size $H \times (H/A+1)$. Number of parameters: $3 A H (H/A + 1) = 3(H^2 + AH)$.
 * Concatenation then projection. One matrix of size $H \times H$. Number of parameters: $H^2$. 
@@ -80,6 +82,8 @@ Total number of parameters per residual block:
 $$3(H^2 + AH) + H^2 + 2H + H(FH+1) + FH(H+1) + 2H$$
 $$= (3 + 1 + F + F)H^2 + (3A + 2 + 1 + F + 2)H$$
 $$= (4+2F)H^2 + (3A + F + 5)H$$
+
+Decoder-only and encoder-only models differ only in their attention masks, as far as I can tell.
 
 ### Word embedding
 The word embedding is a look-up table of length $H$ vectors for each of the $V$ words in the vocabulary. It has $HV$ parameters.
@@ -182,6 +186,35 @@ Model shape didn't matter much -- little effect of changing $F$, $H$, and $L$ wh
 ## Training Data
 
 ## Benchmarks
+
+Types of tasks:
+1. Are two sentences semantically equivalent (or riffs on this -- does one follow the other, do they contradict, neutral, is the second an answer to the first)? 
+2. Is this a linguistically acceptable sentence? 
+3. Sentiment prediction, e.g. is this a positive review? 
+4. Find the span of text from a passage that answers a question. 
+
+### GLUE: General Language Understanding Evaluation
+From [BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding](https://arxiv.org/pdf/1810.04805.pdf) appendix:
+* **MNLI** (1) Multi-Genre Natural Language Inference is a large-scale, crowdsourced entailment classification task. Given a pair of sentences, the goal is to predict whether the second sentence is an entailment, contradiction, or neutral with respect to the first one.
+* **QQP** (1) Quora Question Pairs is a binary classification task where the goal is to determine if two questions asked on Quora are semantically equivalent
+* **QNLI** (1) Question Natural Language Inference is a version of the Stanford Question Answering Dataset which has been converted to a binary classification task. The positive examples are (question, sentence) pairs which do contain the correct answer, and the negative examples are (question, sentence) from the same paragraph which do not contain the answer.
+* **SST-2** (3) The Stanford Sentiment Treebank is a binary single-sentence classification task consisting of sentences extracted from movie reviews with human annotations of their sentiment. 
+* **CoLA** (2) The Corpus of Linguistic Acceptability is a binary single-sentence classification task, where the goal is to predict whether an English sentence is linguistically “acceptable” or not. 
+* **STS-B** (1) The Semantic Textual Similarity Benchmark is a collection of sentence pairs drawn from news headlines and other sources. They were annotated with a score from 1 to 5 denoting how similar the two sentences are in terms of semantic meaning. 
+* **MRPC** (1) Microsoft Research Paraphrase Corpus consists of sentence pairs automatically extracted from online news sources, with human annotations for whether the sentences in the pair are semantically equivalent. 
+* **RTE** (1) Recognizing Textual Entailment is a binary entailment task similar to MNLI, but with much less training data. 
+
+### SQuAD: Stanford Question Answering Dataset
+
+SQuAD v1.1 (4) is 100k crowdsourced question/answer pairs. Given a question and a passage from Wikipedia containing the answer, the task is to predict the answer text span in the passage. SQuAD 2.0 task extends the SQuAD 1.1 problem definition by allowing for the possibility that no short answer exists in the provided paragraph, making the problem more realistic.
+
+### SWAG: Situations With Adversarial Generations
+
+SWAG (1) contains 113k sentence-pair completion examples that evaluate grounded common-sense inference. Given a sentence, the task is to choose the most plausible continuation among four choices. 
+
+## Fine-tuning
+
+BERT adds an additional output layer for fine-tuning. It appears that all parameters are fine-tuned, not just the last layer. For sentence-pair classification tasks, it encodes both sentences together, separated with the [SEP] token. For SQuAD, the question and passage are separated by the [SEP] token. They predict whether each token is a start or end of a span, and choose the span with the highest score. For SQuAD 2.0, they set the start and end to be the [CLS] token. For SWAG, they construct 4 sentence pair inputs, one for each possible continuation. For text generation, I believe that MLMs have a sequence of [MASK] tokens in front of them, and iteratively predict the next token. 
 
 ## References
 
