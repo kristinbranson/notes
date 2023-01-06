@@ -144,7 +144,7 @@ Most models suggest self-supervised training on large unlabeled text data sets, 
 
 GPT-2 and GPT-3 suggest instead doing self-supervised training only, and encoding the task through a prompt. 
 
-## Optimization
+## Hyperparameters
 
 Amount of training data, batch size, and training iterations are growing as model size grows. 
 
@@ -159,17 +159,9 @@ Amount of training data, batch size, and training iterations are growing as mode
 * GPT-3: trained for 300B tokens, batch size = 3.2M, 500B tokens training data, 1024 tokens context 
 * ELECTRA: 1 million iterations, batch size = 256, training data same as XLNet: 126GB = 33B tokens
 
-## Tokenization
-
-## Training Data
-
-## Benchmarks
-
-## Hyperparameters
-
-[Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf) empirically shows rules for choosing model size, batch size, and training iterations given a compute budget (for T-D-style models). If $C$ is your compute budget:
+[Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf) empirically shows rules for choosing model size, batch size, and training iterations given a compute budget (for T-D-style models, context = 1024 tokens). If $C$ is your compute budget:
 * Number of parameters: $N \propto C^{\alpha_C^{min}/\alpha_N}$
-* Batch size: $B \propto C^{\alpha_C^{min}/\alpha_B}$
+* Batch size: $B \propto C^{\alpha_C^{min}/\alpha_B}$. Decreasing batch size does not worsen compute requirements, but, if parallelization across multiple GPUs is possible, larger batch sizes allow more parallelization. 
 * Iteration steps: $S \propto C^{\alpha_C^{min}/\alpha_S}
 * Data set size $D = BS$
 
@@ -178,6 +170,18 @@ where
 * $\alpha_S = .76$
 * $\alpha_B = .21$
 * $\alpha_N = .076$
+
+They found that results at convergence were largely independent of learning rate schedule. Unless otherwise noted, they used a learning rate schedule with a 3000 step linear warmup followed by a cosine decay to zero.
+
+Model shape didn't matter much -- little effect of changing $F$, $H$, and $L$ when total number of parameters was kept constant. $F$ should be around $1-2$, $H/L$ should be $25-100$, $H/A$ should be $12-100$. 
+
+[Training Compute-Optimal Large Language Models](https://arxiv.org/pdf/2203.15556.pdf) got slightly different results. While OpenAI's paper suggested for each 10X increase in compute you had, you should increase model size by $5x$ and data size by $2x$, DeepMind found that you should increase each equally ($\sqrt{10}x$). 
+
+## Tokenization
+
+## Training Data
+
+## Benchmarks
 
 ## References
 
@@ -189,3 +193,5 @@ where
 6. [The Illustrated GPT-2](https://jalammar.github.io/illustrated-gpt2/)
 7. [ELECTRA: Pre-Training Text Encoders as Discriminators Rather than Generators](https://openreview.net/pdf?id=r1xMH1BtvB)
 8. [Scaling Laws for Neural Language Models](https://arxiv.org/pdf/2001.08361.pdf)
+9. [Training Compute-Optimal Large Language Models](https://arxiv.org/pdf/2203.15556.pdf)
+10. [LessWrong: New Scaling Laws for Large Language Models](https://www.lesswrong.com/posts/midXmMb2Xg37F2Kgn/new-scaling-laws-for-large-language-models)
