@@ -1,6 +1,6 @@
 # Behavior Forecasting Notes
 
-## GANet
+## [GANet: Goal Area Network for Motion Forecasting.](https://arxiv.org/abs/2209.09723)
 
 Based on the actors' past and the environment map, this algorithm predicts multiple goals, and a confidence for each of these goals. These goals are used to extract features about the environment local to the goal. It then predicts multiple trajectories given these local goal maps. As far as I understand it, the goals are only input to the motion forecasting via the maps. I'm not sure how this ends up having the goals and the motion trajectories being coherent. 
 
@@ -31,6 +31,11 @@ $$L_{end} = \frac{1}{N} \sum_{n=0}^{N-1} \|(a_{n,end}^{\hat{k}} - a_{n,end}^\*\|
 
 They train all the modules jointly. 
 
+## mmTransformer
+
+[Multimodal Motion Prediction with Stacked Transformers](https://arxiv.org/abs/2103.11624)
+
+
 
 ## References
 1. [GANet: Goal Area Network for Motion Forecasting.](https://arxiv.org/abs/2209.09723). Top performer on Argoverse 2.0 motion forecasting task
@@ -47,3 +52,8 @@ They train all the modules jointly.
 12. [TNT: Target-Driven Trajectory Prediction](https://arxiv.org/abs/2008.08294)
 13. [DenseTNT: End-to-End Trajectory Prediction from Dense Goal Sets](https://arxiv.org/abs/2108.09640)
 14. [Learning Lane Graph Representations for Motion Forecasting](https://arxiv.org/abs/2007.13732)
+15. [Multiple Futures Prediction](https://arxiv.org/abs/1911.00997)
+16. [MultiPath: Multiple Probabilistic Anchor Trajectory Hypotheses for Behavior Prediction](https://arxiv.org/abs/1910.05449)
+17. [TPNet: Trajectory Proposal Network for Motion Prediction](https://ieeexplore.ieee.org/document/9156890)
+18. [End-to-end Contextual Perception and Prediction with Interaction Transformer](https://arxiv.org/abs/2008.05927)
+19. [Transformer Networks for Trajectory Forecasting](https://arxiv.org/abs/2003.08111)
