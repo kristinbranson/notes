@@ -2,6 +2,8 @@
 
 ## GANet
 
+Based on the actors' past and the environment map, this algorithm predicts multiple goals, and a confidence for each of these goals. These goals are used to extract features about the environment local to the goal. It then predicts multiple trajectories given these local goal maps. As far as I understand it, the goals are only input to the motion forecasting via the maps. I'm not sure how this ends up having the goals and the motion trajectories being coherent. 
+
 Goal: Given past observed states for this actor $a_P = a_{-T':0}$, past states for other $N-1$ actors $a_P^O$, and a map of the environment $m$, estimate the distribution of future trajectories for this actor $a_F = a_{1:T}$:
 $$p(a_F | m, a_P, a_P^O)$$
 This can be broken up based on goals $\tau \in T(m,a_P,a_P^O)$ as
