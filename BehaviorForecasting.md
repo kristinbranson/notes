@@ -9,3 +9,8 @@
 6. [Multi-Head Attention for Multi-Modal Joint Vehicle Motion Forecasting](https://ieeexplore.ieee.org/document/9197340)
 7. [Multimodal Motion Prediction with Stacked Transformers](https://arxiv.org/abs/2103.11624)
 8. [Desire: Distant Future Prediction in Dynamic Scenes with Interacting Agents](https://arxiv.org/abs/1704.04394)
+9. [Social GAN: Socially Acceptable Trajectories with Generative Adversarial Networks](https://arxiv.org/abs/1803.10892)
+10. [CoverNet: Multimodal Behavior Prediction Using Trajectory Sets](https://arxiv.org/abs/1911.10298)
+11. [Map-Adaptive Goal-Based Trajectory Prediction](https://arxiv.org/abs/2009.04450)
+12. [TNT: Target-Driven Trajectory Prediction](https://arxiv.org/abs/2008.08294)
+13. [DenseTNT: End-to-End Trajectory Prediction from Dense Goal Sets](https://arxiv.org/abs/2108.09640)
