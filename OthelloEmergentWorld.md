@@ -2,7 +2,7 @@
 
 In our reading group last week, we discussed **Emergent World Representations: Exploring a Sequence Model Trained on a Synthetic Task** (Li et al., ICLR 2023, https://arxiv.org/abs/2210.13382). As large language models (LLMs) are only trained to predict the next word in a sequence, the authors ask whether they only memorize surface statistics, or if they learn a model of the world that generates those words. This is an important question in understanding what LLMs can do and how they do it.
 
-They do this by studying a simple world, the board game Othello. Representing Othello board locations as word tokens, they train a GPT-like model to predict the next tile a piece is played to. The learning algorithm is told nothing about the rules of Othello or, importantly, the structure of the board. It is just given sequences like [44, 45, 37, 43, 34, 20, 19, 38, 21, 33, 42, 51, 41, 25] and trained to predict 52, a legal move (0 is the top-left corner, 59 is the bottom-right corner tile).
+They do this by studying a simple world, the board game Othello. Representing Othello board locations as word tokens, they train a GPT-like model to predict the next tile a piece is played to. The learning algorithm is told nothing about the rules of Othello or, importantly, the structure of the board. It is just given sequences like \[40, 41, 33, 39, 32, 20, 19, 34, 21, 31, 38, 47, 37, 25, 48, 27, 46\] and trained to predict 26, a legal move (0 is the top-left corner, 59 is the bottom-right corner tile).
 
 <img src="https://user-images.githubusercontent.com/211380/221597133-f7e62c9b-630f-4397-b3fe-4e7207e5adc6.png" alt="Othello board with token numbers" style="width:300px;"/>
 
