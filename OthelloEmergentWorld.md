@@ -4,11 +4,7 @@ In our reading group last week, we discussed **Emergent World Representations: E
 
 They do this by studying a simple world, the board game Othello. Representing Othello board locations as word tokens, they train a GPT-like model to predict the next tile a piece is played to. The learning algorithm is told nothing about the rules of Othello or, importantly, the structure of the board. It is just given sequences like [44, 45, 37, 43, 34, 20, 19, 38, 21, 33, 42, 51, 41, 25] and trained to predict 52, a legal move (0 is the top-left corner, 59 is the bottom-right corner tile).
 
-<center>
-<img src="https://user-images.githubusercontent.com/211380/221597133-f7e62c9b-630f-4397-b3fe-4e7207e5adc6.png" alt="drawing" style="width:200px;"/>
-</center>
-  
-![image](https://user-images.githubusercontent.com/211380/221597133-f7e62c9b-630f-4397-b3fe-4e7207e5adc6.png)
+<img src="https://user-images.githubusercontent.com/211380/221597133-f7e62c9b-630f-4397-b3fe-4e7207e5adc6.png" alt="Othello board with token numbers" style="width:300px;"/>
 
 They then ask whether the state of the board (which color tile is in each location) is stored in the hidden state learned by the transformer by training a two-layer network to predict the state board from the hidden representation, and show that they can do this accurately (best error is in layer 7 out of 8). A linear classifier failed. 
 
