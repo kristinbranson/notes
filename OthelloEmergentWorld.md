@@ -8,11 +8,12 @@ They do this by studying a simple world, the board game Othello. Representing Ot
 
 They then ask whether the state of the board (which color tile is in each location) is stored in the hidden state learned by the transformer by training a two-layer network to predict the state board from the hidden representation, and show that they can do this accurately (best error is in layer 7 out of 8). A linear classifier failed. 
 
-![image](https://user-images.githubusercontent.com/211380/221597332-4ddb2477-a0cd-48d0-b81d-09261168074f.png)
+![image](https://user-images.githubusercontent.com/211380/221600842-605438ca-d539-49f9-986c-303b15b1ff69.png)
 
 They also show that they can manipulate the board state in the internal representation, resulting in model predictions corresponding to the new board state. Because transformers input a sequence, the necessary intervention was non-standard and somewhat complex -- they had to nudge the internal representation at ~5 layers in sequence. As we develop XAI methods for transformers, this is something to consider. 
 
 ![image](https://user-images.githubusercontent.com/211380/221597429-dc2f0262-bf6b-4f5d-924e-795ee809045b.png)
+![image](https://user-images.githubusercontent.com/211380/221600917-83dc2aaa-e912-4deb-a183-dfee62204a1e.png)
 
 The paper is convincing in showing that the world of Othello -- the board state -- is learned by the LLM. Some questions I have.
 1. I wonder how surprising this should be. What are the models that can predict legal Othello moves but do not represent board state, besides a lookup table? We can think of self-supervised next-word training as a sort of autoencoder, and we expect autoencoders to learn something nontrivial about the structure of our data. Is there an advantage to unsupervised learning as done by an LLM over more classical techniques (I think so!)? 
