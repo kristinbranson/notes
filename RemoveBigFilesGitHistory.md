@@ -33,4 +33,8 @@ d. Remove all files bigger than 10M:
 ```
 python3 git-filter-repo --strip-blobs-bigger-than 10M
 ```
+More documentation here:
+* [Man page](https://htmlpreview.github.io/?https://github.com/newren/git-filter-repo/blob/docs/html/git-filter-repo.html)
+* [Cheat sheet for converting BFG commands](https://github.com/newren/git-filter-repo/blob/main/Documentation/converting-from-bfg-repo-cleaner.md#cheat-sheet-conversion-of-examples-from-bfg)
+
 
