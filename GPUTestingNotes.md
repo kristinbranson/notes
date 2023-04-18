@@ -57,8 +57,25 @@ docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyT
 ```
 docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyTorch:/workspace/benchmark -v ~/software/deeplearning-benchmark_data:/data -v $(pwd)"/scripts":/scripts -v $(pwd)"/results":/results nvcr.io/nvidia/${NAME_NGC} /bin/bash -c "cp -r /scripts/* /workspace;  ./run_benchmark.sh titan_rtx_24GB all 3000"
 ```
+6. Gather results. Modified the script scripts/compile_results_pytorch.py to include
+`"KBTitanRTX": ([1, 1], "Titan RTX", 280, 2500),` under `list_system_single`. Also modified the names and paths of the output files to 
+```
+df_throughput.to_csv("/results/pytorch-train-throughput-" + args.precision + "-kb.csv")
+...
+df_bs.to_csv("/results/pytorch-train-bs-" + args.precision + "-kb.csv")
+```
+Ran: 
+```
+docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyTorch:/workspace/benchmark -v ~/software/deeplearning-benchmark_data:/data -v $(pwd)"/scripts":/scripts -v $(pwd)"/results":/results nvcr.io/nvidia/${NAME_NGC} /bin/bash -c "cp -r /scripts/* /workspace;  python compile_results_pytorch.py --precision fp32 --system all"
+```
+and
+```
+docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyTorch:/workspace/benchmark -v ~/software/deeplearning-benchmark_data:/data -v $(pwd)"/scripts":/scripts -v $(pwd)"/results":/results nvcr.io/nvidia/${NAME_NGC} /bin/bash -c "cp -r /scripts/* /workspace;  python compile_results_pytorch.py --precision fp16 --system all"
+```
 
 Artifacts:
 * ~/software/deeplearning-benchmark: Lambda benchmark code
 * ~/software/DeepLearningExamples: Lambda's fork of NVIDIA's DeepLearningExamples
 * ~/software/deeplearning-benchmark_data: Data for benchmarks
+* ~/software/deeplearning-benchmark/results/titan_rtx_24GB/: Output of benchmarking.
+* ~/software/deeplearning-benchmark/results/pytorch-train-\*-kb.csv: Gathered results. 
