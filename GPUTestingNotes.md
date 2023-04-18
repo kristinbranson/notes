@@ -58,7 +58,7 @@ docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyT
 docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyTorch:/workspace/benchmark -v ~/software/deeplearning-benchmark_data:/data -v $(pwd)"/scripts":/scripts -v $(pwd)"/results":/results nvcr.io/nvidia/${NAME_NGC} /bin/bash -c "cp -r /scripts/* /workspace;  ./run_benchmark.sh titan_rtx_24GB all 3000"
 ```
 6. Gather results. Modified the script scripts/compile_results_pytorch.py to include
-`"KBTitanRTX": ([1, 1], "Titan RTX", 280, 2500),` under `list_system_single`. Also modified the names and paths of the output files to 
+` "titan_rtx_24GB": ([1, 1], "KB Titan RTX", 280, 2500),` under `list_system_single`. Also modified the names and paths of the output files to 
 ```
 df_throughput.to_csv("/results/pytorch-train-throughput-" + args.precision + "-kb.csv")
 ...
@@ -66,13 +66,21 @@ df_bs.to_csv("/results/pytorch-train-bs-" + args.precision + "-kb.csv")
 ```
 Ran: 
 ```
-docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyTorch:/workspace/benchmark -v ~/software/deeplearning-benchmark_data:/data -v $(pwd)"/scripts":/scripts -v $(pwd)"/results":/results nvcr.io/nvidia/${NAME_NGC} /bin/bash -c "cp -r /scripts/* /workspace;  python compile_results_pytorch.py --precision fp32 --system all"
+docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyTorch:/workspace/benchmark -v ~/software/deeplearning-benchmark_data:/data -v $(pwd)"/scripts":/scripts -v $(pwd)"/results":/results nvcr.io/nvidia/${NAME_NGC} /bin/bash -c "cp -r /scripts/* /workspace;  python compile_results_pytorch.py --precision fp32 --system all --path /results"
 ```
 and
 ```
-docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyTorch:/workspace/benchmark -v ~/software/deeplearning-benchmark_data:/data -v $(pwd)"/scripts":/scripts -v $(pwd)"/results":/results nvcr.io/nvidia/${NAME_NGC} /bin/bash -c "cp -r /scripts/* /workspace;  python compile_results_pytorch.py --precision fp16 --system all"
+docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyTorch:/workspace/benchmark -v ~/software/deeplearning-benchmark_data:/data -v $(pwd)"/scripts":/scripts -v $(pwd)"/results":/results nvcr.io/nvidia/${NAME_NGC} /bin/bash -c "cp -r /scripts/* /workspace;  python compile_results_pytorch.py --precision fp16 --system all --path /results"
 ```
 
+## Results
+ |                                                 | fp32                                                                                                                                          | fp16
+ | name_gpu            | num_gpu | watt  | price   | ssd   | bert_base_squad | bert_large_squad | gnmt     | ncf        | resnet50 | tacotron2 | transformerxlbase | transformerxllarge | waveglow | ssd   | bert_base_squad | bert_large_squad | gnmt     | ncf        | resnet50 | tacotron2 | transformerxlbase | transformerxllarge | waveglow | 
+ | ------------------- | ------- | ----- | ------- | ----- | --------------- | ---------------- | -------- | ---------- | -------- | --------- | ----------------- | ------------------ | -------- | ----- | --------------- | ---------------- | -------- | ---------- | -------- | --------- | ----------------- | ------------------ | -------- | 
+ | KB Titan RTX        | 1.0     | 280.0 | 2500.0  | 88.0  | 45.0            | 13.0             | 23352.0  | 8473545.0  | 301.0    | 17623.0   | 6960.0            | 2311.0             | 50108.0  | 197.0 | 159.0           | 53.0             | 85557.0  | 17555125.0 | 695.0    | 17783.0   | 17849.0           | 6339.0             | 50050.0  |
+ | Quadro RTX 8000     | 1.0     | 260.0 | 6037.5  | 81.0  | 41.0            | 12.0             | 21616.0  | 8501458.0  | 274.0    | 17717.0   | 6623.0            | 2515.0             | 44068.0  | 182.0 | 146.0           | 50.0             | 88498.0  | 19801310.0 | 651.0    | 18587.0   | 18223.0           | 7853.0             | 43964.0  |
+ | H100 80GB PCIe Gen5 | 1.0     | 350.0 | 30918.0 | 355.0 | 292.0           | 97.0             | 162431.0 | 32325375.0 | 1197.0   | 61491.0   | 34241.0           | 15459.0            | 262302.0 | 782.0 | 812.0           | 301.0            | 467071.0 | 52418903.0 | 2616.0   | 78108.0   | 62259.0           | 30841.0            | 393500.0 |
+ 
 Artifacts:
 * ~/software/deeplearning-benchmark: Lambda benchmark code
 * ~/software/DeepLearningExamples: Lambda's fork of NVIDIA's DeepLearningExamples
