@@ -44,7 +44,7 @@ docker pull nvcr.io/nvidia/${NAME_NGC}
 3. Prepared data
 ```
 ```
-4. Created config file scripts/config_v1/config_pytorch_titan_rtx_24GB.sh
+4. Created config file scripts/config_v1/config_pytorch_titan_rtx_24GB.sh for my Titan RTX with 24GB RAM. 
 5. Ran benchmark:
 ```
 ```
