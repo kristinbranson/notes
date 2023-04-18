@@ -24,6 +24,7 @@ Lambda benchmarks train the following:
 * [PyTorch_resnet50_FP32](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/Classification/ConvNets/resnet50v1.5) (synthetic data backend)
 * [PyTorch_transformerxlbase_FP32](https://github.com/NVIDIA/DeepLearningExamples/blob/master/PyTorch/LanguageModeling/Transformer-XL/README.md)
 * [PyTorch_gnmt_FP16](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/Translation/GNMT)
+* [PyTorch_bert_base_squad_FP16](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/LanguageModeling/BERT)
 
 ### Set up
 
