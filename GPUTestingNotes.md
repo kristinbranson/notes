@@ -114,3 +114,7 @@ cd gpu-burn
 docker build -t gpu_burn .
 docker run --rm --gpus all gpu_burn
 ```
+Note that this did **not** work in the head of the repo, I had to go back to the commit I last tried in September to get this to run:
+```
+git checkout c535b677236586fdb35655cfa75156304a9cb1f6
+```
