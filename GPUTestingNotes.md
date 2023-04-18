@@ -118,15 +118,51 @@ Note that this did **not** work in the head of the repo, I had to go back to the
 ```
 git checkout c535b677236586fdb35655cfa75156304a9cb1f6
 ```
-Intermediate output:
+Output:
 ```
 ./gpu_burn -d 3600
 Burning for 3600 seconds.
-GPU 0: NVIDIA T400 
-GPU 1: NVIDIA TITAN RTX 
+GPU 0: NVIDIA T400 (UUID: GPU-d02e054f-0e6a-da13-bb1b-81deedaa1e8e)
+GPU 1: NVIDIA TITAN RTX (UUID: GPU-b7f60d37-616e-9682-6606-7f2c0343c0dc)
 Initialized device 0 with 24220 MB of memory (23879 MB available, using 21491 MB of it), using DOUBLES
 Results are 33554432 bytes each, thus performing 669 iterations
 Initialized device 1 with 1875 MB of memory (725 MB available, using 653 MB of it), using DOUBLES
 Results are 33554432 bytes each, thus performing 18 iterations
-4.8%  proc'd: 4683 (518 Gflop/s) - 414 (44 Gflop/s)   errors: 0 - 0   temps: 70 C - 67 C 
+10.0%  proc'd: 10704 (514 Gflop/s) - 864 (40 Gflop/s)   errors: 0 - 0   temps: 71 C - 73 C 
+	Summary at:   Tue Apr 18 19:55:44 UTC 2023
+
+20.1%  proc'd: 21408 (510 Gflop/s) - 1728 (41 Gflop/s)   errors: 0 - 0   temps: 78 C - 73 C 
+	Summary at:   Tue Apr 18 20:01:48 UTC 2023
+
+30.2%  proc'd: 32112 (510 Gflop/s) - 2574 (41 Gflop/s)   errors: 0 - 0   temps: 78 C - 74 C 
+	Summary at:   Tue Apr 18 20:07:50 UTC 2023
+
+40.2%  proc'd: 42816 (510 Gflop/s) - 3456 (44 Gflop/s)   errors: 0 - 0   temps: 78 C - 74 C 
+	Summary at:   Tue Apr 18 20:13:50 UTC 2023
+
+50.3%  proc'd: 53520 (510 Gflop/s) - 4392 (44 Gflop/s)   errors: 0 - 0   temps: 78 C - 74 C 
+	Summary at:   Tue Apr 18 20:19:55 UTC 2023
+
+60.4%  proc'd: 64224 (510 Gflop/s) - 5310 (44 Gflop/s)   errors: 0 - 0   temps: 78 C - 74 C 
+	Summary at:   Tue Apr 18 20:25:56 UTC 2023
+
+70.5%  proc'd: 74928 (510 Gflop/s) - 6228 (44 Gflop/s)   errors: 0 - 0   temps: 78 C - 74 C 
+	Summary at:   Tue Apr 18 20:32:01 UTC 2023
+
+80.5%  proc'd: 85632 (510 Gflop/s) - 7146 (44 Gflop/s)   errors: 0 - 0   temps: 78 C - 74 C 
+	Summary at:   Tue Apr 18 20:38:02 UTC 2023
+
+90.6%  proc'd: 96336 (510 Gflop/s) - 8082 (44 Gflop/s)   errors: 0 - 0   temps: 78 C - 74 C 
+	Summary at:   Tue Apr 18 20:44:05 UTC 2023
+
+100.0%  proc'd: 106371 (510 Gflop/s) - 8946 (44 Gflop/s)   errors: 0 - 0   temps: 78 C - 74 C 
+Killing processes.. Freed memory for dev 1
+Uninitted cublas
+Freed memory for dev 0
+Uninitted cublas
+done
+
+Tested 2 GPUs:
+	GPU 0: OK
+	GPU 1: OK
 ```
