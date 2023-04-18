@@ -13,3 +13,37 @@ Lambda benchmarks train the following:
 * [PyTorch_waveglow_FP16](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/SpeechSynthesis/Tacotron2)
 * [PyTorch_transformerxllarge_FP32](https://github.com/NVIDIA/DeepLearningExamples/blob/master/PyTorch/LanguageModeling/Transformer-XL/README.md)
 * [PyTorch_gnmt_FP32](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/Translation/GNMT)
+* [PyTorch_bert_large_squad_FP16](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/LanguageModeling/BERT)
+* [PyTorch_SSD_AMP](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/Detection/SSD)
+* [PyTorch_transformerxlbase_FP16](https://github.com/NVIDIA/DeepLearningExamples/blob/master/PyTorch/LanguageModeling/Transformer-XL/README.md)
+* [PyTorch_bert_base_squad_FP32](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/LanguageModeling/BERT)
+
+### Set up
+
+Followed instructions here:
+https://github.com/lambdal/deeplearning-benchmark/blob/master/pytorch/README.md
+
+1. Cloned the repo at https://github.com/lambdal/deeplearning-benchmark into ~/software/deeplearning-benchmark:
+```
+# Lambda's fork of DeepLearningExamples (a few patches to make sure they work with the recent NGC)
+git clone https://github.com/LambdaLabsML/DeepLearningExamples.git && \
+cd DeepLearningExamples && \
+git checkout lambda/benchmark && \
+cd ..
+
+# Clone this repo for streamlining the benchmark
+git clone https://github.com/lambdal/deeplearning-benchmark.git && \
+cd deeplearning-benchmark/pytorch
+```
+2. Pulled the NGC (NVIDIA GPU Cloud) docker container for the latest PyTorch:
+```
+export NAME_NGC=pytorch:22.10-py3
+docker pull nvcr.io/nvidia/${NAME_NGC}
+```
+3. Prepared data
+```
+```
+4. Created config file scripts/config_v1/config_pytorch_titan_rtx_24GB.sh
+5. Ran benchmark:
+```
+```
