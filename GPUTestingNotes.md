@@ -93,9 +93,24 @@ FP16:
 | Quadro RTX 8000     | 1.0     | 260.0 | 6037.5   | 182.0 | 146.0           | 50.0             | 88498.0  | 19801310.0 | 651.0    | 18587.0   | 18223.0           | 7853.0             | 43964.0  |
 | H100 80GB PCIe Gen5 | 1.0     | 350.0 | 30918.0  | 782.0 | 812.0           | 301.0            | 467071.0 | 52418903.0 | 2616.0   | 78108.0   | 62259.0           | 30841.0            | 393500.0 |
 
-Artifacts:
+## Artifacts:
+
 * ~/software/deeplearning-benchmark: Lambda benchmark code
 * ~/software/DeepLearningExamples: Lambda's fork of NVIDIA's DeepLearningExamples
 * ~/software/deeplearning-benchmark_data: Data for benchmarks
 * ~/software/deeplearning-benchmark/results/titan_rtx_24GB/: Output of benchmarking.
 * ~/software/deeplearning-benchmark/results/pytorch-train-\*-kb.csv: Gathered results. 
+
+# GPU Burn
+Multi-GPU CUDA stress test: http://wili.cc/blog/gpu-burn.html
+
+Cloned repo into ~/software:
+```
+git clone git@github.com:wilicc/gpu-burn.git
+```
+Followed instructions in README:
+```
+cd gpu-burn
+docker build -t gpu_burn .
+docker run --rm --gpus all gpu_burn
+```
