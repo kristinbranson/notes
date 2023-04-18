@@ -17,6 +17,7 @@ Lambda benchmarks train the following:
 * [PyTorch_SSD_AMP](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/Detection/SSD)
 * [PyTorch_transformerxlbase_FP16](https://github.com/NVIDIA/DeepLearningExamples/blob/master/PyTorch/LanguageModeling/Transformer-XL/README.md)
 * [PyTorch_bert_base_squad_FP32](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/LanguageModeling/BERT)
+* [PyTorch_transformerxllarge_FP16](https://github.com/NVIDIA/DeepLearningExamples/blob/master/PyTorch/LanguageModeling/Transformer-XL/README.md)
 
 ### Set up
 
