@@ -48,10 +48,17 @@ cd deeplearning-benchmark/pytorch
 export NAME_NGC=pytorch:22.10-py3
 docker pull nvcr.io/nvidia/${NAME_NGC}
 ```
-3. Prepared data
+3. Prepared data. In directory ~/software/deeplearning-benchmark/pytorch:
 ```
+docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyTorch:/workspace/benchmark -v ~/software/deeplearning-benchmark_data:/data -v $(pwd)"/scripts":/scripts nvcr.io/nvidia/${NAME_NGC} /bin/bash -c "cp -r /scripts/* /workspace;  ./run_prepare.sh"
 ```
 4. Created config file scripts/config_v1/config_pytorch_titan_rtx_24GB.sh for my Titan RTX with 24GB RAM. 
-5. Ran benchmark:
+5. Ran benchmark. In directory ~/software/deeplearning-benchmark/pytorch:
 ```
+docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyTorch:/workspace/benchmark -v ~/software/deeplearning-benchmark_data:/data -v $(pwd)"/scripts":/scripts -v $(pwd)"/results":/results nvcr.io/nvidia/${NAME_NGC} /bin/bash -c "cp -r /scripts/* /workspace;  ./run_benchmark.sh titan_rtx_24GB all 3000"
 ```
+
+Artifacts:
+* ~/software/deeplearning-benchmark: Lambda benchmark code
+* ~/software/DeepLearningExamples: Lambda's fork of NVIDIA's DeepLearningExamples
+* ~/software/deeplearning-benchmark_data: Data for benchmarks
