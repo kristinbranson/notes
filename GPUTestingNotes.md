@@ -122,8 +122,8 @@ Intermediate output:
 ```
 ./gpu_burn -d 3600
 Burning for 3600 seconds.
-GPU 0: NVIDIA T400 (UUID: GPU-d02e054f-0e6a-da13-bb1b-81deedaa1e8e)
-GPU 1: NVIDIA TITAN RTX (UUID: GPU-b7f60d37-616e-9682-6606-7f2c0343c0dc)
+GPU 0: NVIDIA T400 
+GPU 1: NVIDIA TITAN RTX 
 Initialized device 0 with 24220 MB of memory (23879 MB available, using 21491 MB of it), using DOUBLES
 Results are 33554432 bytes each, thus performing 669 iterations
 Initialized device 1 with 1875 MB of memory (725 MB available, using 653 MB of it), using DOUBLES
