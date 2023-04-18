@@ -75,6 +75,8 @@ docker run --gpus all --rm --shm-size=64g -v ~/software/DeepLearningExamples/PyT
 
 ## Results
 
+Train throughput (higher is better): 
+
 FP32: 
 
  | name_gpu            | num_gpu | watt  | price   | ssd   | bert_base_squad | bert_large_squad | gnmt     | ncf        | resnet50 | tacotron2 | transformerxlbase | transformerxllarge | waveglow |
