@@ -22,7 +22,7 @@ Lambda benchmarks train the following:
 * [PyTorch_waveglow_FP32](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/SpeechSynthesis/Tacotron2)
 * [PyTorch_SSD_FP32](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/Detection/SSD)
 * [PyTorch_resnet50_FP32](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/Classification/ConvNets/resnet50v1.5) (synthetic data backend)
-* 
+* [PyTorch_transformerxlbase_FP32](https://github.com/NVIDIA/DeepLearningExamples/blob/master/PyTorch/LanguageModeling/Transformer-XL/README.md)
 
 ### Set up
 
