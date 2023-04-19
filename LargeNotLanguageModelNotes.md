@@ -15,6 +15,7 @@ I'm incredibly confused about how/if the tokens for one modality are separated f
 out. The observation space is always 39 dimensional."
 "The multi-component reward function R is the combination of a reaching reward, a grasping reward, and a placing reward"
 
-*[BabyAI](https://arxiv.org/abs/1810.08272): 
+*[BabyAI](https://arxiv.org/abs/1810.08272)*: 
 "2D gridworld in which synthetic natural-looking instructions (e.g. 'put the red ball next to the box on your left') require the agent
 to navigate the world (including unlocking doors) and move objects to specified location." 
+Instructions are in a synthetic Baby Language, a small subset of English, language can be specified in Backus-Naur Form. 
