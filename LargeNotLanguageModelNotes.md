@@ -22,3 +22,7 @@ to navigate the world (including unlocking doors) and move objects to specified 
 Instructions are in a synthetic Baby Language, a small subset of English, language can be specified in Backus-Naur Form. Actions appear to be a discrete set. 
 
 *[DM Control Suite](https://arxiv.org/pdf/1801.00690v1.pdf)*; Continuous control tasks in MuJoCo, ranging from a pendulum to a humanoid walker. States, actions, and observations are all continuous vectors of different dimensionality, depending on the task, and are related to positions, angles, and movements of parts. The simplest (pendulum) task has state dimensionality 2, action dimensionality 1, observation dimensionality 3, while the most complex (humanoid) has state dimensionality 124, action dimensionality 56, observation dimensionality 137. 
+
+*[Arcade Learning Environment](https://arxiv.org/abs/1207.4708)*: classic Atari games. Observations are single game screens (160x210 7-bit pixels), actions are the set of 18 discrete actions defined by a joystick controller.
+
+*[Procgen Benchmark](https://arxiv.org/pdf/1912.01588.pdf)*: procedurally generated game environments.
