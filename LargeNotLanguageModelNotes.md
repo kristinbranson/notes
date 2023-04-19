@@ -20,3 +20,5 @@ out. The observation space is always 39 dimensional."
 to navigate the world (including unlocking doors) and move objects to specified location." 
 "At each step, the agent receives a 7x7 representation of its field of view (the grid cells in front of it) as well as a Baby Language instruction (textual string)."
 Instructions are in a synthetic Baby Language, a small subset of English, language can be specified in Backus-Naur Form. Actions appear to be a discrete set. 
+
+*[DM Control Suite](https://arxiv.org/pdf/1801.00690v1.pdf)*; Continuous control tasks in MuJoCo, ranging from a pendulum to a humanoid walker. States, actions, and observations are all continuous vectors of different dimensionality, depending on the task, and are related to positions, angles, and movements of parts. The simplest (pendulum) task has state dimensionality 2, action dimensionality 1, observation dimensionality 3, while the most complex (humanoid) has state dimensionality 124, action dimensionality 56, observation dimensionality 137. 
