@@ -18,9 +18,33 @@ I'm incredibly confused about how/if the tokens for one modality are separated f
 
 ### Tokenization
 
-Each time point is represented by a sequence of tokens. If there are text inputs, these come first -- the tokens representing each word-piece observed. These are in the range \[0,32000). These are embedded into a continuous embedding space via a look-up table. 
+Each time point is represented by a sequence of tokens. If there are text inputs, these come first -- the tokens representing each word-piece observed. These are in the range \[0,32000). Each word-piece token is embedded into a continuous embedding space via a look-up table. 
 
+Images are next tokenized, following ViT. The image is split into 16x16 patches in raster order. These patches are then continuous vectors of length 256, and are normalized to be in the range [-1/4,1/4] for some reason. A single ResNet block is used to embed each image patch separately. 
 
+Discrete values, e.g. joystick button presses, are encoded as numbers in \[0,1200), so I think they overlap with some word-piece tokens. If there are multiple button presses, they are output in some fixed order, as far as I can tell. 
+
+Continuous values are mu-law encoded (log scaling away from 0), then discretized into 1024 bins. These are then shifted to the range \[32000,33024) so that they don't overlap with word-pieces. I do think they overlap with each other, though. 
+
+Between observations and actions, there is a special separator token. 
+
+### Positional encoding
+
+Positional encoding is learnable and added to token embeddings. Image patch positional encodings only seem to encode location in the image. 
+
+The order within the sequence for a given timestep is encoded  with the local observation position encoding. 
+
+As far as I can tell, there is NO positional encoding information about time step?? That seems bizarre.
+
+### Training
+
+Training only penalizes predictions for text or agent actions, not observations via masking. 
+
+The context length is 1024. This seems relatively small for the control tasks, in which the subsequence length for a given time point could be in the hundreds. 
+
+### Deployment
+
+Prompting is used to tell the model which task it is solving. 
 
 
 ### Data sets
