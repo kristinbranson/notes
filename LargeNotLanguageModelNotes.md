@@ -18,4 +18,5 @@ out. The observation space is always 39 dimensional."
 *[BabyAI](https://arxiv.org/abs/1810.08272)*: 
 "2D gridworld in which synthetic natural-looking instructions (e.g. 'put the red ball next to the box on your left') require the agent
 to navigate the world (including unlocking doors) and move objects to specified location." 
-Instructions are in a synthetic Baby Language, a small subset of English, language can be specified in Backus-Naur Form. 
+"At each step, the agent receives a 7x7 representation of its field of view (the grid cells in front of it) as well as a Baby Language instruction (textual string)."
+Instructions are in a synthetic Baby Language, a small subset of English, language can be specified in Backus-Naur Form. Actions appear to be a discrete set. 
