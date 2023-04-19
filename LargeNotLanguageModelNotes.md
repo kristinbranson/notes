@@ -16,6 +16,11 @@ I'm incredibly confused about how/if the tokens for one modality are separated f
 
 **Robotics** Real robot - observations are camera images and robot state, with actions that are a mix of continuous and discrete. 
 
+### Tokenization
+
+Each time point is represented by a sequence of tokens. If there are text inputs, these come first -- the tokens representing each word-piece observed. These are in the range \[0,32000). These are embedded into a continuous embedding space via a look-up table. 
+
+
 
 
 ### Data sets
