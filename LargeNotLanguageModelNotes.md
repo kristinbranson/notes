@@ -46,7 +46,23 @@ The context length is 1024. This seems relatively small for the control tasks, i
 
 ### Deployment
 
-A fixed prompt is used for each task, e.g. tje first 1024 tokens of a demonstration. Action vectors are produced one at a time, then decoded into actions at the end of the time step. 
+A fixed prompt is used for each task, e.g. the first 1024 tokens of a demonstration. Action vectors are produced one at a time, then decoded into actions at the end of the time step. 
+
+### Experiments
+
+They do some experiments, but no comparisons, and just say it seems okay at a bunch of tasks. They show that bigger models do better. 
+
+### Out-of-distribution tasks
+
+Their context was too small to use prompting, so they fine-tune the model on the held-out task. Here, they actually did some ablation experimeents. I believe they *never* pre-train on data from the held-out task. They experiment with pre-training on all the data vs pre-training only on data from the same domain vs pre-training on data from only the non-control tasks (vision and language tasks, I believe? possibly robotics is included there??), and no pre-training. 
+
+For the cartpole swing task, there seems to be a benefit to pre-training on all data vs just data from the domain for smaller amounts of fine-tuning. Without pre-training on control data, this model does not do well. For other tasks, fine-tuning from scratch does okay.
+
+The only case where pre-training on non-control data seemed to help was for the DMLab task. Since the input here includes images, the image dataset may be helping. 
+
+### Specialist single-domain multi-task agents
+
+They show that their method works for single-domain data. 
 
 ### Data sets
 
