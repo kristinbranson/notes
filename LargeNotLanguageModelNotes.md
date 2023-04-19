@@ -40,12 +40,13 @@ As far as I can tell, there is NO positional encoding information about time ste
 
 Training only penalizes predictions for text or agent actions, not observations via masking. 
 
+Prompting is used to tell the model which task it is solving. During training, for 25% of sequences, a prompt sequence consisting of another episode from the same agent is prepended. Half of these are from the end of the sequence, and half are from a random location. 
+
 The context length is 1024. This seems relatively small for the control tasks, in which the subsequence length for a given time point could be in the hundreds. 
 
 ### Deployment
 
-Prompting is used to tell the model which task it is solving. 
-
+A fixed prompt is used for each task, e.g. tje first 1024 tokens of a demonstration. Action vectors are produced one at a time, then decoded into actions at the end of the time step. 
 
 ### Data sets
 
