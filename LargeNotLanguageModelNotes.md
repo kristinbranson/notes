@@ -87,3 +87,12 @@ Instructions are in a synthetic Baby Language, a small subset of English, langua
 dimensional action space and produce 64 × 64 × 3. 
 
 *[Modular RL](https://wenlong.page/modular-rl)*: Gym Mujoco, similar to DM Control Suite. 
+
+## [Trajectory Transformers: Offline reinforcement learning as one big sequence modeling problem](https://github.com/JannerM/trajectory-transformer)
+
+Reinforcement learning can be viewed as a sequence generation problem, in which the goal is to generate sequences of actions of high reward. From offline data, this work learns to generate sequences of states, actions, and rewards using a transformer. It then uses dynamic programming to find sequences of states that optimize a criterion, e.g. maximizing reward, probability. 
+
+As in GATO (this work precedes GATO), states, actions, and reward for a given time point are flattened into subsequences:
+$$\tau = (...,s_t^1,...,s_t^N,a_t^1,a_t^M,r_t,...)$$
+States, actions, and rewards are continuous, and they try both uniform and quantile-based strategies for binning the data. Each output is discretized into $V$ bins, and tokens for different types of outputs are different, so the total vocabulary size is 
+
