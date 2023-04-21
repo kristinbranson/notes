@@ -94,5 +94,7 @@ Reinforcement learning can be viewed as a sequence generation problem, in which 
 
 As in GATO (this work precedes GATO), states, actions, and reward for a given time point are flattened into subsequences:
 $$\tau = (...,s_t^1,...,s_t^N,a_t^1,a_t^M,r_t,...)$$
-States, actions, and rewards are continuous, and they try both uniform and quantile-based strategies for binning the data. Each output is discretized into $V$ bins, and tokens for different types of outputs are different, so the total vocabulary size is 
+States, actions, and rewards are continuous, and they try both uniform and quantile-based strategies for binning the data. Each output is discretized into $V$ bins (in the code, the default number of bins is 100), and tokens are shared between different output types, which can only be distinguished based on the positional encoding. Looking at the code, it looks like the positional encoding is learned. According to the code, there is a different weight for action, reward, and value outputs (not sure what values are). It doesn't look like they ignore observations in the loss function. 
+
+During inference, they use beam search to produce a sequence. At each time $t$ they choose the $B$ subsequences that 
 
