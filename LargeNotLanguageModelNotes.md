@@ -1,6 +1,6 @@
 # Notes on papers extending LLM approaches to non-language domains
 
-## GATO: [A Generalist Agent](https://arxiv.org/pdf/2205.06175v3.pdf)
+## GATO: [A Generalist Agent](https://arxiv.org/pdf/2205.06175v3.pdf) (2022)
 
 This work trains an LLM on many modalities of data by flattening. Each wordpiece, image patch, continuous sensory input, or output action becomes a token, so all observations and outputs at a given time point become a subsequence of the time series. 
 
@@ -88,7 +88,7 @@ dimensional action space and produce 64 × 64 × 3.
 
 *[Modular RL](https://wenlong.page/modular-rl)*: Gym Mujoco, similar to DM Control Suite. 
 
-## [Trajectory Transformers: Offline reinforcement learning as one big sequence modeling problem](https://github.com/JannerM/trajectory-transformer)
+## [Trajectory Transformers: Offline reinforcement learning as one big sequence modeling problem](https://github.com/JannerM/trajectory-transformer) (2021)
 
 Reinforcement learning can be viewed as a sequence generation problem, in which the goal is to generate sequences of actions of high reward. From offline data, this work learns to generate sequences of states, actions, and rewards using a transformer. It then uses dynamic programming to find sequences of states that optimize a criterion, e.g. maximizing reward, probability. 
 
@@ -99,3 +99,7 @@ States, actions, and rewards are continuous, and they try both uniform and quant
 During inference, they use beam search to produce a sequence. At each time $t$ they choose the $B$ subsequences that maximize some criterion. For imitation learning, they maximize the probability of the trajectory. For finding a trajectory that achieves a goal, they permute the input to $(s_T, s_1, ..., s_{T-1})$ (I think during both training and inference?). For offline reinforcement learning, they use beam search to maximize the reward. To make this work, they include a prediction of reward-to-go at each time point, the reward received after the given time point. 
 
 Quantitative evaluation is performed for offline reinforcement learning, with the goal of maximizing the reward (not imitating behavior in the dataset). Thus, the transformer is ideally learning the distribution of states, actions, and rewards, and then beam search is used to plan in this distribution. 
+
+## [Decision Transformer: Reinforcement learning via sequence learning](https://arxiv.org/abs/2106.01345) (2021)
+
+
