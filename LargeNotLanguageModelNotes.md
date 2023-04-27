@@ -102,4 +102,14 @@ Quantitative evaluation is performed for offline reinforcement learning, with th
 
 ## [Decision Transformer: Reinforcement learning via sequence learning](https://arxiv.org/abs/2106.01345) (2021)
 
+![image](https://user-images.githubusercontent.com/211380/234879887-d39dd164-3248-4d1a-8a19-c311632976dd.png)
 
+This paper explores whether transformers can be used for reinforcement learning by training from observations of state, action, and reward. Given sequences of state, action, and reward, they construct a sequence:
+$$( (R_1, s_1, a_1), (R_2, s_2, a_2), ... , (R_T, s_T, a_T))$$
+where $s_t$ and $a_t$ are the state and action and $R_t$ is the reward to go -- the reward achieved in the sequence from this time point $t$ on to the end of the sequence: 
+$$R_t = \sum_{\tau=t}^T r_{\tau}$$
+This reward-to-go is key, and what differentiates this from behavior cloning. During inference, you specify the reward you want to get, and the transformer tries to predict a sequence that will get that reward. For example, if a task is either successful or not, you can specify $R_1 = 1$ to indicate that by the end of the sequence, it should have succeeded. At each time step $t$, they only predict the next action $a_{t+1}$. 
+
+For example, they can train this system to try to find the shortest path to a goal node in a graph from random walks on this graph. In this example, the reward for the goal node is 0 and -1 for all other nodes. They assume they are given the length of this path to start, and use that to set R_1 at inference time. They need to include a prior to prefer shorter paths, but can get the transformer to find the shortest paths even thought the training data are random walks. 
+
+The transformer has a 
