@@ -22,4 +22,11 @@ $$H_{tvc}^{(l)} = \sum_{v',t',c'} A_{vv'}^{s(l)} A_{tt'}^{t(l)} H_{t'v'c'}^{(l-1
 where $A^s \in \mathbb{R}^{V \times V}$ is the learned spatial adjacency matrix (values between -1 and 1),
 $A^t \in \mathbb{R}^{T \times T}$ is the learned temporal adjacency matrix (values between -1 and 1),
 $W$ is the learned weight matrix. 
+In ["Space-Time-Separable Graph Convolutional Network for Pose Forecasting"](https://arxiv.org/abs/2110.04573), they use 4 layers of GCNs with $C^{(1)} = 64$, $C^{(2)} = 32$, $C^{(3)} = 64$, and $C^{(4)} = 3$, . That's quite few layers!
+In ["Back to MLP: A Simple Baseline for Human Motion Prediction"](https://arxiv.org/pdf/2207.01567.pdf), the input sequence length is 50 and the output length is 10 or 25 frames, depending on the data set. 
 
+From the matrix $H^{(L)} \in \mathbb{R}^{T \times 2J \times C}$, they find that a fully-connected decoder to the output matrix of size $N \times 2J \times 3$. 
+
+They also consider graph attention networks, unfactored graph adjacency matrices, and fixed spatial adjacency matrix based on the kinematic tree. This table shows the improvement of each of these best practices:
+![image](https://github.com/kristinbranson/notes/assets/211380/6d9314dd-0028-49bd-9d63-691ff4ed977a)
+ 
