@@ -32,6 +32,8 @@ They also consider graph attention networks, unfactored graph adjacency matrices
  
 ## [History Repeats Itself: Human Motion Prediction via Motion Attention](https://arxiv.org/pdf/2007.11755.pdf)
 
+![image](https://github.com/kristinbranson/notes/assets/211380/d596eb8e-4e9e-4002-af7f-1231048b00c2)
+
 This paper proposes combining a self attention model on tracklets with a GCN for pose prediction. The input to the network is a sequence of joint positions/angles
 $X_{1:N}$ and the goal is to predict the next $T$ frames in the sequence $X_{N+1:N+T}$. As I understand it, the novelty proposed is an initial motion attention layer. They perform self-attention on sliding windows of $M+T$ frames. Sliding window $i$ corresponds to inputs $X_{i:i+M+T-1}$, with the key being a function $k_i = f_k(X_{i:i+M-1})$ and the value being $v_i = DCT(X_{i:i+M+T-1})$. $f_k$ is a two-layer 1-D temporal convolutional network. The query function $q = f_q(X_{n-M+1:N})$ is also a 2-layer conv net. The output of this self-attention layer is
 $$U = \sum_{i=1}^{N-M-T+1} a_i v_i$$ where
