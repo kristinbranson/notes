@@ -11,7 +11,7 @@ model = ...
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=1e-7, weight_decay=1e-2)
 lr_finder = LRFinder(model, optimizer, criterion, device="cuda")
-lr_finder.range_test(trainloader, end_lr=100, num_iter=100,val_loader=testloader)
+lr_finder.range_test(trainloader, end_lr=500, num_iter=100,val_loader=testloader)
 
 lrs = np.array(lr_finder.history["lr"])
 losses = np.array(lr_finder.history["loss"])
