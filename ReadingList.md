@@ -16,7 +16,7 @@ To encourage myself to read papers, and (maybe) to encourage others to read pape
 
 #### Kristin's star of approval! 
 
-* **[Understanding behavioural responses to human-induced rapid environmental change: a meta-analysis](https://onlinelibrary.wiley.com/doi/full/10.1111/oik.08366), 2021, by Rachel L. Gunn, Ian R. Hartley, Adam C. Algar, Petri T. Niemelä, Sally A. Keith. Keywords: environmental change, behavior, ecology. **
+* [Understanding behavioural responses to human-induced rapid environmental change: a meta-analysis](https://onlinelibrary.wiley.com/doi/full/10.1111/oik.08366), 2021, by Rachel L. Gunn, Ian R. Hartley, Adam C. Algar, Petri T. Niemelä, Sally A. Keith. Keywords: environmental change, behavior, ecology.
 
 Short summary: Meta-analysis of effects of human-induced rapid environmental change (HIREC) on animals' aggression, exploration, activity, boldness and sociability behaviors. I am a novice in this field, and this seems like a good starting point to understand the state of the field. Their meta-analysis found that animals do have behavioural responses to HIREC, but that the magnitude of response varies across behaviours, form of HIREC, and type of animal. A major source of heterogenetity in the study were details of the method used to measure behavior, e.g. different specific experiments to measure boldness. 
 
